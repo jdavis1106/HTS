@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lancaster Lofts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="w3.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="other.css">
+
+</head>
+
+<style>
+
+</style>
+<body>
+ 
+ 
+ 
+<nav class="w3-sidenav w3-blue w3-animate-left" style="display:none;z-index:5">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-xlarge">Menu &times;</a>   
+  <div class="w3-accordion  w3-large">
+    <a onclick="myAccFunc()" href="#">
+      Units <i class="fa fa-caret-down" ></i>
+    </a>
+    <div id="demoAcc" class="w3-accordion-content w3-white w3-card-4">
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_1/points', myFunction, 'Lobby', 'AC-1')">Lobby</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_2/points', myFunction, 'Studios', 'AC-2')">Studios</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_3/points', myFunction, '201', 'AC-3')">201</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_4/points', myFunction, '202', 'AC-4')">202</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_5/points', myFunction, '203', 'AC-5')">203</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_6/points', myFunction, '204', 'AC-6')">204</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_7/points', myFunction, '301', 'AC-7')">301</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_8/points', myFunction, '302', 'AC-8')">302</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_9/points', myFunction, '303', 'AC-9')">303</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_10/points', myFunction, '304', 'AC-10')">304</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_11/points', myFunction, '401', 'AC-11')">401</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_12/points', myFunction, '402', 'AC-12')">402</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_13/points', myFunction, '403', 'AC-13')">403</a>
+      <a href="#" onclick="loadDoc('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/AC_14/points', myFunction, '404', 'AC-14')">404</a>
+    </div>
+  </div>
+  <a href="#" class="w3-large" onclick="loadEnergy('http://71.86.119.154/ord?spy:/nav/localhost/station/Drivers/BacnetNetwork/WattNode/points', energyFunction, 'Energy', 'Watt Node')">Energy</a> 
+</nav>
+
+<div  class="overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"></div>
+
+<div id="main">
+
+  <header id="header" class="w3-container w3-signal-blue w3-round-large">
+      <span class="w3-opennav w3-xxlarge w3-display-topleft w3-padding-small" onclick="w3_open()">&#9776;</span>
+      <h1 style="text-align: center">Lancaster Lofts</h1>
+  </header>
+   
+    <div class="my-background"></div>
+  
+  
+    <div id="loader" class="w3-container w3-animate-right w3-card-4 w3-right-align" style='border-radius:6px'>
+          <div class="info"></div>
+          <h2 id="locationName" class="w3-card-2 w3-center" style='border-radius:6px'></h2>
+          <h4 id="unitName" class="w3-round-small w3-center"></h4>
+                    
+         <div id="myStatuspoints" class="w3-card-2">          
+            <div id="spacetemp"></div>            
+            <div id="otherpoints">  
+              <label>Set Point:</label>
+              <div id="setpoint"></div>
+              <label>Fan:</label>
+              <div id="fan"></div>                             
+           </div>            
+         </div>
+                 
+        <div id="gauge" class="w3-card-2">
+          <label id="gaugeLabel">Demand</label>
+          <canvas id="gaugeCanvasCoolDemand" ></canvas>
+          <div id="gaugeLabelCoolDemand"></div>
+          <canvas id="gaugeCanvasHeatDemand" ></canvas>
+          <div id="gaugeLabelHeatDemand"></div>
+        </div>   
+    </div>
+    
+    
+    <div id="energyUsage" class=" w3-card-4">
+        <canvas id="energyChart" class=" w3-card-4" ></canvas>
+    </div> 
+    
+        
+    <div id="displayHere" style="display: none"></div>
+  
+</div>
+  
+
+  
+  
+  <footer id="foot">
+      <div id="footLabel1">HTS Controls</div>
+      <div id="footlabel2">469.263.1000 | 1625 Wallace Drive Suite 120 | Carrollton, Texas 75006</div>
+  </footer>
+
+
+  
+<script src="gauge.js"></script>
+<script src="Chart.js"></script>
+<script>
+var spaceTemp = 0;
+var coolDemand = 0;
+var heatDemand = 0;
+var Avolt = 0;
+var Bvolt = 0;
+var pSum = 0;
+var eSum = 0;
+var avril = 0;
+
+//SIDENAV OPEN
+function w3_open() {
+    document.getElementById("main").style.marginLeft = "25%";
+ document.getElementById("foot").style.marginLeft = "25%";
+    document.getElementsByClassName("w3-sidenav")[0].style.width = "25%";
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "inline-block";
+    document.getElementsByClassName("w3-opennav")[0].style.display = 'none';
+    document.getElementsByClassName("overlay")[0].style.display = "block";
+}
+//SIDENAV CLOSE
+function w3_close() {
+    document.getElementById("main").style.marginLeft = "0%";
+ document.getElementById("foot").style.marginLeft = "0%";
+    document.getElementsByClassName("w3-sidenav")[0].style.display = "none";
+    document.getElementsByClassName("overlay")[0].style.display = "none";
+    document.getElementsByClassName("w3-opennav")[0].style.display = "inline-block";
+}
+//ACCORDION MENU
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-green";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-green", "");
+    }
+}
+
+//AJAX
+  function loadDoc(url, cfunc, x, y) {
+      document.getElementById("loader").style.display = "block";
+      
+      var loc = x;
+      var unit = y;
+      document.getElementById("locationName").innerHTML = loc;
+      document.getElementById("unitName").innerHTML = "Unit: " + unit;
+      
+      var xhttp;
+      xhttp=new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+              cfunc(xhttp.responseText);
+          }
+      };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+      
+  }
+    
+function myFunction(xhttp) {
+  var txt = xhttp;
+  document.getElementById("displayHere").innerHTML = txt;
+                                                       
+  var space = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2)").innerHTML;
+  var setpoint = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2)").innerHTML;
+  var fan = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(4) > td:nth-child(2)").innerHTML;
+  var sysmode = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2)").innerHTML;  
+  var cdemand = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2)").innerHTML;
+  var hdemand = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(7) > td:nth-child(2)").innerHTML;
+  var maxsetpoint = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(8) > td:nth-child(2)").innerHTML;
+  var minsetpoint = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(9) > td:nth-child(2)").innerHTML;
+  var hightempalarm = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(10) > td:nth-child(2)").innerHTML;
+  var lowtempalarm = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(11) > td:nth-child(2)").innerHTML;
+  var runtime = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(12) > td:nth-child(2)").innerHTML;
+ 
+  var fanOut = fan.replace(/\s*{.*/i,"");
+  var spaceOut = space.replace(/\s*{.*/i,"");
+  var setpointOut = setpoint.replace(/\s*{.*/i,"");
+  var cdemandOut = cdemand.replace(/\s*{.*/i,"");
+  var hdemandOut = hdemand.replace(/\s*{.*/i,"");
+  
+  
+  document.getElementById("spacetemp").innerHTML = spaceOut;
+  document.getElementById("setpoint").innerHTML = setpointOut;
+  document.getElementById("fan").innerHTML = fanOut;
+  
+  //spaceTemp = parseFloat(spaceOut);
+  coolDemand = parseFloat(cdemandOut);
+  heatDemand = parseFloat(hdemandOut);
+ 
+//GAUGE COOL DEMAND
+  var optsCool = {
+    lines: 12, // The number of lines to draw
+    angle: 0.2, // The length of each line
+    lineWidth: .1, // The line thickness
+    pointer: {
+      length: 0.8, // The radius of the inner circle
+      strokeWidth: 0.03, // The rotation offset
+      color: '#282828' // Fill color
+    },
+    limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
+    colorStart: '#6FADCF',   // Colors
+    colorStop: '#8FC0DA',    // just experiment with them
+    strokeColor: '#E0E0E0',   // to see which ones work best for you
+    generateGradient: true
+  };
+  var targetCool = document.getElementById("gaugeCanvasCoolDemand"); // your canvas element
+  var gaugeCool = new Gauge(targetCool).setOptions(optsCool);
+  gaugeCool.maxValue = 100; // set max gauge value
+  gaugeCool.animationSpeed = 32; // set animation speed (32 is default value)
+  if(coolDemand > 0){
+    gaugeCool.set(coolDemand); // set actual value
+  }else{
+    gaugeCool.set(0.1);
+  }
+  document.getElementById("gaugeLabelCoolDemand").innerHTML = "Cooling: " + cdemandOut;
+  
+  
+//GAUGE HEAT DEMAND  
+    var optsHeat = {
+    lines: 12, // The number of lines to draw
+    angle: 0.2, // The length of each line
+    lineWidth: .1, // The line thickness
+    pointer: {
+      length: 0.8, // The radius of the inner circle
+      strokeWidth: 0.03, // The rotation offset
+      color: '#282828' // Fill color
+    },
+    limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
+    colorStart: '#6FADCF',
+    colorStop: '#e87676',
+    strokeColor: '#E0E0E0',
+    generateGradient: true
+  };
+  var targetHeat = document.getElementById("gaugeCanvasHeatDemand"); // your canvas element
+  var gaugeHeat = new Gauge(targetHeat).setOptions(optsHeat);
+  gaugeHeat.minValue = 0; // set min gauge value
+  gaugeHeat.maxValue = 100; // set max gauge value
+  gaugeHeat.animationSpeed = 32; // set animation speed (32 is default value)
+  if(heatDemand > 0){
+    gaugeHeat.set(heatDemand); // set actual value
+  }else{
+    gaugeHeat.set(0.1);
+  }
+  
+  document.getElementById("gaugeLabelHeatDemand").innerHTML = "Heating: " + hdemandOut;
+  
+} 
+  
+  
+//CHART
+  function loadEnergy(url, cfunc, x, y) {
+      document.getElementById("energyUsage").style.display = "block";
+      var loc = x;
+      var unit = y;
+      document.getElementById("locationName").innerHTML = loc;
+      document.getElementById("unitName").innerHTML = "Unit: " + unit;
+      var xhttp;
+      xhttp=new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (xhttp.readyState == 4 && xhttp.status == 200) {
+              cfunc(xhttp.responseText);
+          }
+      };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+      
+  }
+  
+  
+    
+ function energyFunction(xhttp) {
+  var txt = xhttp;
+  document.getElementById("displayHere").innerHTML = txt;
+  
+  var voltA = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(91) > td:nth-child(2)").innerHTML;
+  var voltB = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(92) > td:nth-child(2)").innerHTML;
+  var powerSum = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(86) > td:nth-child(2)").innerHTML;
+  var energySum = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(82) > td:nth-child(2)").innerHTML;
+  var april = document.querySelector("div#displayHere > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(7) > td:nth-child(2)").innerHTML;
+  
+  var voltAOut = voltA.replace(/\s*{.*/i,"");
+  var voltBOut = voltB.replace(/\s*{.*/i,"");
+  var powerSumOut = powerSum.replace(/\s*{.*/i,"");
+  var energySumOut = energySum.replace(/\s*{.*/i,"");
+  var aprilOut = april.replace(/\s*{.*/i,"");
+
+  Avolt = parseFloat(voltAOut);
+  Bvolt = parseFloat(voltBOut);
+  pSum = parseFloat(powerSumOut);
+  eSum = parseFloat(energySumOut);
+  avril = parseFloat(aprilOut);
+  
+
+  var ctx = document.getElementById("energyChart").getContext("2d");
+  var energyChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+              labels : ["Volt A","Volt B","Power Sum","Energy Sum","April"],
+              datasets : [{
+                            
+                            //backgroundColor: "rgba(49,127,67,0.4), red, blue, yellow, black",
+                            //backgroundColor: "rgba(0,100,165,0.4)",
+                            //borderColor: "rgba(0,100,165,1)",//HTS blue
+                            borderColor: "rgba(33,84,47,1)",
+                            borderWidth: 1,
+                            //hoverBackgroundColor: "rgba(96,125,139,0.7)",//blue-grey
+                            hoverBackgroundColor: "rgba(223,138,41,0.7)",//HTS orange
+                            hoverBorderColor: "rgba(207,110,0,1)",
+                            data: [
+                                  Avolt,
+                                  Bvolt,
+                                  pSum,
+                                  eSum,
+                                  avril
+                            ],
+                            backgroundColor: [
+                                "rgba(0,100,165,0.4)",
+                                "rgba(255,100,165,0.4)",
+                                "rgba(0,200,165,0.4)",
+                                "rgba(90,100,165,0.4)",
+                                "rgba(0,100,65,0.4)"
+                            ],
+                            label: 'Energy Data'
+                                    
+                         }]
+            },
+            options: {
+               scales: {
+                  xAxes: [{}],
+                 yAxes: [{ticks: {beginAtZero:true}}]
+               }
+            }
+  });
+
+//document.getElementById("energyChart").style.width = "800px";
+}
+
+</script>
+</body>
+</html>
