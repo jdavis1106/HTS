@@ -1,0 +1,185 @@
+.my-background {
+  content: "";  
+  background-image: url('Logo_4Dcircle.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  top: 90px;
+  right: 0px;
+  width:100%;
+  height:90%;
+  position: fixed;
+  opacity: 0.05;
+  z-index: -1; 
+
+}
+
+.overlay {
+ position:fixed;
+ display:none;
+ width:100%;
+ height:100%;top:0;
+ left:0;
+ right:0;
+ bottom:0;
+ background-color:rgba(0,0,0,0.5);
+ z-index:2
+}
+
+
+h1 {
+  text-shadow: 0 1px 2px black;
+  
+}
+#header {
+  background-color: rgba(0, 98, 175, 0.9);
+  border-radius: 6px;
+  box-shadow: 0 3px 4px #888888;
+}
+
+#loader {
+  width: 100%;
+  height: 400px;
+  display: none;
+  
+}
+
+
+#myStatuspoints {
+
+  width: 300px;
+  height: 270px;
+  padding: 10px;
+  font-variant: small-caps;  
+  border-radius: 6px;
+  z-index: 3;
+  
+  
+}
+
+#spacetemp {
+  background-image: url('NeptronicsStat_Large.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-size: 190px 255px;
+  padding: 68px 30px 30px 65px;
+  width: 190px;
+  height: 255px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  word-spacing: -3px; 
+  text-align: left;
+  position: relative; 
+} 
+
+
+#otherpoints {
+  position: relative; 
+  top: -205px;
+  left: 140px;
+  bottom: 0px;
+  right: 0px;
+  width: 130px;
+  height: 75px;
+
+} 
+
+
+
+#fan, #setpoint {
+  color:#0063a4!important;
+  font-family: "Ubuntu", sans-serif;
+ -webkit-font-smoothing: antialiased;
+
+}
+
+#gauge {
+  width: 160px;
+  height: 240px;
+  position: relative;
+  border-radius: 6px;
+  top: -270px;
+  right: 0px;
+  bottom: 0px;
+  left: 350px;
+  font-variant: small-caps;
+  font-family: "Ubuntu", sans-serif;
+  -webkit-font-smoothing: antialiased; 
+}
+
+#gaugeLabel {
+  padding: 5px 5px 0px 0px;
+  font-size: 18px;  
+}
+
+#gaugeCanvasCoolDemand, #gaugeCanvasHeatDemand {
+  width: 140px;
+  height: 70px;
+  margin: 0px 15px 5px 0px;
+  z-index: 5; 
+}
+
+#gaugeLabelCoolDemand, #gaugeLabelHeatDemand {
+  position: relative;
+  top: -15px;
+  text-align: center;
+  z-index: 5; 
+}
+
+#gaugeLabelCoolDemand {
+  text-shadow: 0 2px 2px rgba(0, 98, 175, 0.9); 
+}
+#gaugeLabelHeatDemand {
+  text-shadow: 0 2px 2px rgba(232, 118, 118, 0.9);
+}
+
+
+
+#energyUsage {
+  position: relative;
+  top: 20px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  align-items: center;
+  width: 600px;
+  height: 300px;
+  display: none;
+}
+
+canvas#energyChart {
+
+}
+
+label {
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Ubuntu", sans-serif;
+ -webkit-font-smoothing: antialiased;
+}
+#foot {
+ transition:margin-left .4s;
+ position: fixed;
+ bottom: 0px;
+ width: 100%;
+ height: 70px;
+ color: white;
+ background-color: rgba(0, 98, 175, 0.9);
+ border-radius: 6px;
+ box-shadow: 0 3px 4px #888888;
+ text-shadow: 0 1px 2px black;
+ text-align: center;
+ font-family: "Ubuntu", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-variant: small-caps;
+}
+
+#footLabel1 {
+  font-size: 20px;  
+}
+#footLabel2 { 
+  font-size: 14px;
+}
+
+  
